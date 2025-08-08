@@ -11,7 +11,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import { Trash2, Plus, Edit, Save, X, Search, LogOut } from "lucide-react"
-import { branches, type Nursery } from "@/lib/data"
+// Remove import of branches and Nursery from lib/data
+// Define Nursery type locally to avoid import issues
+type Nursery = {
+  id: string;
+  name: string;
+  branch: string;
+  phone: string;
+  phone2?: string;
+  email?: string;
+  fees?: string;
+  gpsLocation?: string;
+  image?: string;
+  description: string;
+  address: string;
+};
 import { useRouter } from "next/navigation"
 
 export default function AdminPage() {
