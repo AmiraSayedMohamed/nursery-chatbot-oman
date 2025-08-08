@@ -1,0 +1,149 @@
+[
+  {
+    "id": "3",
+    "name": "Learning Trail Nursery",
+    "branch": "الجبيهة",
+    "phone": "0790874313",
+    "description": "حضانة دولية مع منهج حديث",
+    "address": "شارع الجبيهة الرئيسي، محل 10",
+    "email": "info@learning-trail.edu.jo",
+    "fees": "180 دينار شهريًا",
+    "gpsLocation": "31.9643, 35.9542",
+    "image": "https://www.ainpedia.com/images/learningtrail.jpg"
+  },
+  {
+    "id": "4",
+    "name": "WABE Amman",
+    "branch": "خلدا",
+    "phone": "0797980008",
+    "description": "حضانة لرياض الأطفال متخصصة",
+    "address": "شارع ناقور، مبنى 5",
+    "email": "info@wabe-amman.com",
+    "fees": "200 دينار شهريًا",
+    "gpsLocation": "31.9597, 35.9398",
+    "image": "https://yellowpages-ar.cybo.com/images/wabeamman.jpg"
+  },
+  {
+    "id": "5",
+    "name": "White Lines Nursery",
+    "branch": "خلدا",
+    "phone": "962796398889",
+    "description": "حضانة معتمدة تقدم خدمات تربوية متكاملة",
+    "address": "شارع الجمعيات، مبنى 8",
+    "email": "adel.en@hotmail.com",
+    "fees": "170 دينار شهريًا",
+    "gpsLocation": "31.9610, 35.9405",
+    "image": "https://yellowpages-ar.cybo.com/images/whitelines.jpg"
+  },
+  {
+    "id": "6",
+    "name": "حضانة اليوم السعيد",
+    "branch": "بسمان",
+    "phone": "0795123456",
+    "description": "حضانة معتمدة من الضمان الاجتماعي",
+    "address": "شارع بسمان، عمارة رقم 4",
+    "email": "info@alyoumsaeed.jo",
+    "fees": "140 دينار شهريًا",
+    "gpsLocation": "31.9530, 35.9300",
+    "image": "https://ssc.gov.jo/uploads/day_happy_nursery.jpg"
+  },
+  {
+    "id": "7",
+    "name": "حضانة فرح النموذجية",
+    "branch": "جبل الحسين",
+    "phone": "0795234567",
+    "description": "حضانة نموذجية تقدم بيئة تعليمية محفزة",
+    "address": "شارع جبل الحسين، مبنى 10",
+    "phone2": "0797654321",
+    "email": "contact@farah-nursery.com",
+    "fees": "160 دينار شهريًا",
+    "gpsLocation": "31.9490, 35.9380",
+    "image": "https://directoryjordan.com/images/farah_nursery.jpg"
+  },
+  {
+    "id": "8",
+    "name": "حضانة سيسو النموذجية",
+    "branch": "خلدا",
+    "phone": "0795345678",
+    "description": "حضانة تطور مهارات الطفل ببرامج شاملة",
+    "address": "شارع خلدا الرئيسي، مبنى 15",
+    "email": "sisonursery@gmail.com",
+    "fees": "150 دينار شهريًا",
+    "gpsLocation": "31.9570, 35.9402",
+    "image": "https://yellowpages-ar.cybo.com/images/siso_nursery.jpg"
+  },
+  {
+    "id": "9",
+    "name": "حضانة قوس قزح النموذجية",
+    "branch": "الشميساني",
+    "phone": "0795456789",
+    "description": "حضانة تقدم برامج تربوية مبتكرة",
+    "address": "شارع الشميساني، مقابل مركز المدينة",
+    "email": "rainbow.school@gmail.com",
+    "fees": "155 دينار شهريًا",
+    "gpsLocation": "31.9585, 35.9420",
+    "image": "https://ainpedia.com/images/rainbow_nursery.jpg"
+  },
+  {
+    "id": "10",
+    "name": "حضانة شمسة الأصدقاء",
+    "branch": "الطفيلة",
+    "phone": "0795567890",
+    "description": "حضانة تجمع بين التعلم والمرح",
+    "address": "شارع الطفيلة، بناية رقم 3",
+    "phone2": "0795123455",
+    "email": "friends.nursery@example.com",
+    "fees": "145 دينار شهريًا",
+    "gpsLocation": "31.9420, 35.9350",
+    "image": "https://madaresonajo.com/images/shamsa_friends_nursery.jpg"
+  },
+  {
+    "id": "11",
+    "name": "Modern Garden preschool",
+    "branch": "تلاع العلي",
+    "phone": "0790418745",
+    "description": "حضانة تقدم منهج منتسوري باللغتين العربي والإنجليزي",
+    "address": "عمان",
+    "phone2": "962797615061"
+  },
+  {
+    "id": "12",
+    "name": "Roshan nursery",
+    "branch": "البنيات",
+    "phone": "0791234567",
+    "description": "حضانة منتسوري دولية تقدم بيئة تعليمية متقدمة",
+    "address": "عمان"
+  },
+  {
+    "id": "13",
+    "name": "Takween Nursery",
+    "branch": "الجبيهة",
+    "phone": "0791234567",
+    "description": "حضانة تعتمد منهج منتسوري للتعليم المبكر",
+    "address": "عمان"
+  },
+  {
+    "id": "14",
+    "name": "Platinum Academy Kindergarten",
+    "branch": "الصويفية",
+    "phone": "0791234567",
+    "description": "حضانة منتسوري تقدم تعليمًا مبكرًا باللغتين",
+    "address": "عمان"
+  },
+  {
+    "id": "15",
+    "name": "حضانة أكاديمية الازدهار",
+    "branch": "طبربور",
+    "phone": "0791234567",
+    "description": "حضانة تقدم منهج منتسوري باللغة الإنجليزية",
+    "address": "عمان"
+  },
+  {
+    "id": "16",
+    "name": "حضانة الأطفال السعيدين",
+    "branch": "مرج الحمام",
+    "phone": "0791234567",
+    "description": "حضانة تقدم بيئة تعليمية محفزة",
+    "address": "عمان"
+  }
+]

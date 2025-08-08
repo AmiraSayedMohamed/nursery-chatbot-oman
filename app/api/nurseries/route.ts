@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 
-// مسار ملف البيانات
-const dataFilePath = path.join(process.cwd(), 'lib', 'data.ts')
+// مسار ملف البيانات الجديد (JSON)
+const dataFilePath = path.join(process.cwd(), 'lib', 'nurseries.json')
 
 // نوع البيانات
 interface Nursery {
@@ -20,64 +20,27 @@ interface Nursery {
   address: string
 }
 
-// قراءة البيانات الحالية من الملف
+// قراءة البيانات الحالية من ملف JSON
 function readNurseriesFromFile(): Nursery[] {
   try {
     const fileContent = fs.readFileSync(dataFilePath, 'utf-8')
-    
-    // استخراج البيانات من TypeScript file باستخدام regex محسن
-    const nurseriesMatch = fileContent.match(/export const nurseries: Nursery\[\] = \[([\s\S]*?)\](?:\s*$|\s*\/\/)/m)
-    if (!nurseriesMatch) {
-      console.log('لم يتم العثور على بيانات الحضانات في الملف')
-      return []
-    }
-    
-    // استخراج محتوى المصفوفة وتحويله إلى JSON صالح
-    let nurseriesContent = nurseriesMatch[1].trim()
-    
-    // إضافة أقواس المصفوفة للتحويل إلى JSON
-    const jsonContent = `[${nurseriesContent}]`
-    
-    try {
-      // تحويل إلى JSON مباشرة
-      const parsedNurseries = JSON.parse(jsonContent)
-      console.log(`تم قراءة ${parsedNurseries.length} حضانة من الملف`)
-      return parsedNurseries
-    } catch (jsonError) {
-      console.error('خطأ في تحويل JSON:', jsonError)
-      return []
-    }
-    
+    const parsedNurseries = JSON.parse(fileContent)
+    console.log(`تم قراءة ${parsedNurseries.length} حضانة من ملف nurseries.json`)
+    return parsedNurseries
   } catch (error) {
-    console.error('خطأ في قراءة البيانات:', error)
+    console.error('خطأ في قراءة بيانات الحضانات من nurseries.json:', error)
     return []
   }
 }
 
-// كتابة البيانات إلى الملف
+// كتابة البيانات إلى ملف JSON
 function writeNurseriesToFile(nurseries: Nursery[]) {
   try {
-    // قراءة محتوى الملف الحالي
-    const fileContent = fs.readFileSync(dataFilePath, 'utf-8')
-    
-    // تحويل البيانات إلى JSON string مع formatting جميل
     const nurseriesJSON = JSON.stringify(nurseries, null, 2)
-    
-    // إنشاء النص الجديد للبيانات
-    const nurseriesText = `export const nurseries: Nursery[] = ${nurseriesJSON}`
-    
-    // استبدال البيانات القديمة بالجديدة
-    const updatedContent = fileContent.replace(
-      /export const nurseries: Nursery\[\] = \[[\s\S]*?\](?:\s*$|\s*\/\/)/m,
-      nurseriesText
-    )
-    
-    // كتابة الملف المحدث
-    fs.writeFileSync(dataFilePath, updatedContent, 'utf-8')
-    
+    fs.writeFileSync(dataFilePath, nurseriesJSON, 'utf-8')
     return true
   } catch (error) {
-    console.error('خطأ في كتابة البيانات:', error)
+    console.error('خطأ في كتابة بيانات الحضانات إلى nurseries.json:', error)
     return false
   }
 }
