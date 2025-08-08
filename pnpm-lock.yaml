@@ -25,7 +25,7 @@ importers:
         version: 4.6.1
       '@langchain/community':
         specifier: ^0.3.50
-        version: 0.3.50(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76))(@huggingface/inference@4.6.1)(@huggingface/transformers@3.7.1)(@ibm-cloud/watsonx-ai@1.6.10)(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76)))(@langchain/groq@0.2.3(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))))(@opentelemetry/api@1.9.0)(axios@1.11.0)(chromadb@3.0.11)(ibm-cloud-sdk-core@5.4.2)(jsonwebtoken@9.0.2)(lodash@4.17.21)(mongodb@6.18.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(playwright@1.54.2)(weaviate-client@3.8.0)(ws@8.18.3)
+        version: 0.3.50(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@17.2.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76))(@huggingface/inference@4.6.1)(@huggingface/transformers@3.7.1)(@ibm-cloud/watsonx-ai@1.6.10)(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76)))(@langchain/groq@0.2.3(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))))(@opentelemetry/api@1.9.0)(axios@1.11.0)(chromadb@3.0.11)(ibm-cloud-sdk-core@5.4.2)(jsonwebtoken@9.0.2)(lodash@4.17.21)(mongodb@6.18.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(playwright@1.54.2)(weaviate-client@3.8.0)(ws@8.18.3)
       '@langchain/core':
         specifier: ^0.3.68
         version: 0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))
@@ -140,6 +140,9 @@ importers:
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
+      dotenv:
+        specifier: ^17.2.1
+        version: 17.2.1
       embla-carousel-react:
         specifier: 8.5.1
         version: 8.5.1(react@19.1.1)
@@ -2416,6 +2419,10 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
+  dotenv@17.2.1:
+    resolution: {integrity: sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ==}
+    engines: {node: '>=12'}
+
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
@@ -3603,13 +3610,13 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@browserbasehq/stagehand@1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76)':
+  '@browserbasehq/stagehand@1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@17.2.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76)':
     dependencies:
       '@anthropic-ai/sdk': 0.27.3
       '@browserbasehq/sdk': 2.6.0
       '@playwright/test': 1.54.2
       deepmerge: 4.3.1
-      dotenv: 16.6.1
+      dotenv: 17.2.1
       openai: 5.12.1(ws@8.18.3)(zod@3.25.76)
       ws: 8.18.3
       zod: 3.25.76
@@ -3957,9 +3964,9 @@ snapshots:
 
   '@js-sdsl/ordered-map@4.4.2': {}
 
-  '@langchain/community@0.3.50(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76))(@huggingface/inference@4.6.1)(@huggingface/transformers@3.7.1)(@ibm-cloud/watsonx-ai@1.6.10)(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76)))(@langchain/groq@0.2.3(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))))(@opentelemetry/api@1.9.0)(axios@1.11.0)(chromadb@3.0.11)(ibm-cloud-sdk-core@5.4.2)(jsonwebtoken@9.0.2)(lodash@4.17.21)(mongodb@6.18.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(playwright@1.54.2)(weaviate-client@3.8.0)(ws@8.18.3)':
+  '@langchain/community@0.3.50(@browserbasehq/sdk@2.6.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@17.2.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76))(@huggingface/inference@4.6.1)(@huggingface/transformers@3.7.1)(@ibm-cloud/watsonx-ai@1.6.10)(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76)))(@langchain/groq@0.2.3(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))))(@opentelemetry/api@1.9.0)(axios@1.11.0)(chromadb@3.0.11)(ibm-cloud-sdk-core@5.4.2)(jsonwebtoken@9.0.2)(lodash@4.17.21)(mongodb@6.18.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(playwright@1.54.2)(weaviate-client@3.8.0)(ws@8.18.3)':
     dependencies:
-      '@browserbasehq/stagehand': 1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@16.6.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76)
+      '@browserbasehq/stagehand': 1.14.0(@playwright/test@1.54.2)(deepmerge@4.3.1)(dotenv@17.2.1)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))(zod@3.25.76)
       '@ibm-cloud/watsonx-ai': 1.6.10
       '@langchain/core': 0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76))
       '@langchain/openai': 0.6.6(@langchain/core@0.3.68(@opentelemetry/api@1.9.0)(openai@5.12.1(ws@8.18.3)(zod@3.25.76)))(ws@8.18.3)
@@ -5273,6 +5280,8 @@ snapshots:
       domhandler: 5.0.3
 
   dotenv@16.6.1: {}
+
+  dotenv@17.2.1: {}
 
   dunder-proto@1.0.1:
     dependencies:
