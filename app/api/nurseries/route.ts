@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
-
-// مسار ملف البيانات الجديد (JSON)
-const dataFilePath = path.join(process.cwd(), 'lib', 'nurseries.json')
+import clientPromise from '@/lib/mongodb'
 
 // نوع البيانات
 interface Nursery {
@@ -20,108 +16,61 @@ interface Nursery {
   address: string
 }
 
-// قراءة البيانات الحالية من ملف JSON
-function readNurseriesFromFile(): Nursery[] {
-  try {
-    const fileContent = fs.readFileSync(dataFilePath, 'utf-8')
-    const parsedNurseries = JSON.parse(fileContent)
-    console.log(`تم قراءة ${parsedNurseries.length} حضانة من ملف nurseries.json`)
-    return parsedNurseries
-  } catch (error) {
-    console.error('خطأ في قراءة بيانات الحضانات من nurseries.json:', error)
-    return []
-  }
-}
 
-// كتابة البيانات إلى ملف JSON
-function writeNurseriesToFile(nurseries: Nursery[]) {
-  try {
-    const nurseriesJSON = JSON.stringify(nurseries, null, 2)
-    fs.writeFileSync(dataFilePath, nurseriesJSON, 'utf-8')
-    return true
-  } catch (error) {
-    console.error('خطأ في كتابة بيانات الحضانات إلى nurseries.json:', error)
-    return false
-  }
-}
 
 // GET - جلب جميع الحضانات
 export async function GET() {
   try {
-    const nurseries = readNurseriesFromFile()
-    return NextResponse.json(nurseries)
+    const client = await clientPromise;
+    const db = client.db();
+    const nurseries = await db.collection('nurseries').find({}).toArray();
+    return NextResponse.json(nurseries);
   } catch (error) {
-    console.error('خطأ في جلب البيانات:', error)
+    console.error('خطأ في جلب البيانات:', error);
     return NextResponse.json(
       { error: 'خطأ في جلب البيانات' },
       { status: 500 }
-    )
+    );
   }
 }
+
 
 // POST - إضافة حضانة جديدة
 export async function POST(request: NextRequest) {
   try {
-    console.log('POST request received')
-    console.log('Request headers:', Object.fromEntries(request.headers.entries()))
-    
-    let body
+    let body;
     try {
-      const rawBody = await request.text()
-      console.log('Raw body:', rawBody)
-      body = JSON.parse(rawBody)
-      console.log('Parsed body:', body)
+      const rawBody = await request.text();
+      body = JSON.parse(rawBody);
     } catch (jsonError) {
-      console.error('JSON parsing error:', jsonError)
       return NextResponse.json(
         { error: 'خطأ في تحليل البيانات المرسلة' },
         { status: 400 }
-      )
+      );
     }
-    
-    const { name, branch, phone, phone2, email, fees, gpsLocation, image, description, address } = body
-    
-    // التحقق من الحقول المطلوبة
+    const { name, branch, phone, phone2, email, fees, gpsLocation, image, description, address } = body;
     if (!name || !name.trim()) {
       return NextResponse.json(
         { error: 'اسم الحضانة مطلوب' },
         { status: 400 }
-      )
+      );
     }
-    
     if (!branch || !branch.trim()) {
       return NextResponse.json(
         { error: 'الفرع مطلوب' },
         { status: 400 }
-      )
+      );
     }
-    
-    console.log('Data validation passed:', { name, branch, phone });
-    
-    // قراءة البيانات الحالية
-    const currentNurseries = readNurseriesFromFile()
-    
-    // التحقق من وجود حضانة بنفس الاسم والفرع
-    const duplicateNursery = currentNurseries.find(nursery => {
-      const currentName = nursery.name.toLowerCase().trim()
-      const currentBranch = nursery.branch.toLowerCase().trim()
-      const newName = (name?.trim() || "").toLowerCase()
-      const newBranch = (branch?.trim() || "").toLowerCase()
-      
-      console.log('Comparing:', {
-        existing: { name: currentName, branch: currentBranch },
-        new: { name: newName, branch: newBranch },
-        match: currentName === newName && currentBranch === newBranch
-      })
-      
-      return currentName === newName && currentBranch === newBranch
-    })
-    
+    const client = await clientPromise;
+    const db = client.db();
+    // Check for duplicate
+    const duplicateNursery = await db.collection('nurseries').findOne({
+      name: { $regex: `^${name.trim()}$`, $options: 'i' },
+      branch: { $regex: `^${branch.trim()}$`, $options: 'i' }
+    });
     if (duplicateNursery) {
-      console.log('Duplicate nursery found:', duplicateNursery)
-      console.log('Returning error response: هذه الحضانة موجودة من قبل')
       return NextResponse.json(
-        { 
+        {
           error: `هذه الحضانة موجودة من قبل - ابحث عنها في قائمة الحضانات للتعديل أو الحذف`,
           existingNursery: {
             id: duplicateNursery.id,
@@ -131,13 +80,15 @@ export async function POST(request: NextRequest) {
           }
         },
         { status: 400 }
-      )
+      );
     }
-    
-    // إنشاء ID جديد
-    const newId = (Math.max(...currentNurseries.map(n => parseInt(n.id))) + 1).toString()
-    
-    // إنشاء حضانة جديدة
+    // Generate new ID (find max id in collection)
+    const lastNursery = await db.collection('nurseries')
+      .find({})
+      .sort({ id: -1 })
+      .limit(1)
+      .toArray();
+    const newId = lastNursery.length > 0 ? (parseInt(lastNursery[0].id) + 1).toString() : '1';
     const newNursery: Nursery = {
       id: newId,
       name: name?.trim() || "حضانة جديدة",
@@ -150,28 +101,13 @@ export async function POST(request: NextRequest) {
       image: image?.trim() || undefined,
       description: description?.trim() || `حضانة تقدم رعاية تعليمية وتربوية للأطفال.`,
       address: address?.trim() || "غير محدد",
-    }
-    
-    // إضافة الحضانة الجديدة
-    const updatedNurseries = [...currentNurseries, newNursery]
-    
-    // حفظ البيانات
-    const success = writeNurseriesToFile(updatedNurseries)
-    
-    if (success) {
-      return NextResponse.json(newNursery, { status: 201 })
-    } else {
-      return NextResponse.json(
-        { error: 'خطأ في حفظ البيانات' },
-        { status: 500 }
-      )
-    }
+    };
+    await db.collection('nurseries').insertOne(newNursery);
+    return NextResponse.json(newNursery, { status: 201 });
   } catch (error) {
-    console.error('خطأ في إضافة الحضانة:', error)
-    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack')
     return NextResponse.json(
       { error: `خطأ في إضافة الحضانة: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
-    )
+    );
   }
 }
