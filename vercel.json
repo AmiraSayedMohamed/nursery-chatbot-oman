@@ -1,1 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app/**/*.tsx",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app/$1"
+    }
+  ]
+}
 
